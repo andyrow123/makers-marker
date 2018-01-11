@@ -3,15 +3,15 @@ package makersmarker
 import spock.lang.*
 
 class JSONdomainTest extends Specification {
-    JSONdomain jSONdomain = new JSONdomain()
+    JSONDomain jsonDomain = new JSONDomain()
 
     def "test to String"() {
         when:
-        String result = jSONdomain.toString()
+        String result = jsonDomain.toString()
 
         println(result)
 
         then:
-        result == "JSONdomain{userId=0, id=0, title='null', body='null'}"
+        result == "JSONDomain{userId=0, id=0, title='null', body='null'}"
     }
 }

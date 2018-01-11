@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-public class JSONdomain {
+public class JSONDomain {
 
     private int userId;
     private int id;
     private String title;
     private String body;
 
-    public JSONdomain() {
+    public JSONDomain() {
 
     }
 
@@ -33,7 +33,7 @@ public class JSONdomain {
 
     @Override
     public String toString() {
-        return "JSONdomain{" +
+        return "JSONDomain{" +
                 "userId=" + userId +
                 ", id=" + id +
                 ", title='" + title + '\'' +

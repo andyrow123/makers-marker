@@ -13,7 +13,7 @@ public class MakersMarker {
 
     public static void main(String[] args) {
         RestTemplate restTemplate = new RestTemplate();
-        JSONdomain jsoNdomain = restTemplate.getForObject("https://jsonplaceholder.typicode.com/posts/1", JSONdomain.class);
-        log.info(jsoNdomain.toString());
+        JSONDomain jsonDomain = restTemplate.getForObject("https://jsonplaceholder.typicode.com/posts/1", JSONDomain.class);
+        log.info(jsonDomain.toString());
     }
 }
