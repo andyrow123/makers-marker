@@ -1,12 +1,3 @@
-group 'com.tsco'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-
-sourceCompatibility = 1.8
-
 buildscript {
     repositories {
         mavenCentral()
@@ -16,9 +7,25 @@ buildscript {
     }
 }
 
+group 'com.tsco'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE")
+
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework:spring-web")
+    compile("com.fasterxml.jackson.core:jackson-databind")
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.13'
