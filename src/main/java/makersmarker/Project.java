@@ -1,3 +1,5 @@
+package makersmarker;
+
 import java.util.List;
 
 public class Project {
@@ -9,6 +11,7 @@ public class Project {
         this.name = name;
         this.pulls = pulls;
     }
+
 
     public void setName(String name) {
         this.name = name;

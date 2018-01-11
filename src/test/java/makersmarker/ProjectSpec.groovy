@@ -1,3 +1,6 @@
+package makersmarker
+
+import makersmarker.Project
 import spock.lang.Specification
 
 import static org.hamcrest.Matchers.*
@@ -11,17 +14,17 @@ class ProjectSpec extends Specification {
         project = new Project("Test", [1])
     }
 
-    def "should be an instance of Project"() {
+    def "should be an instance of makersmarker.Project"() {
         expect:
         project instanceof Project
 
     }
 
     def "should have a name when set" () {
-        when: "Project name is set"
+        when: "makersmarker.Project name is set"
         project.setName("Airport")
 
-        then: "Project name should be Airport"
+        then: "makersmarker.Project name should be Airport"
         project.getName() == "Airport"
 
     }
