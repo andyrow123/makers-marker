@@ -14,7 +14,7 @@ class ProjectSpec extends Specification {
         project = new Project("Test", [1])
     }
 
-    def "should be an instance of makersmarker.Project"() {
+    def "should be an instance of Project"() {
         expect:
         project instanceof Project
 
