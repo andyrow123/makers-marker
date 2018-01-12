@@ -1,12 +1,12 @@
-package makersmarker
+package makersmarker.entities
 
-import makersmarker.Project
+import makersmarker.entities.Project
 import spock.lang.Specification
 
 import static org.hamcrest.Matchers.*
 import static org.hamcrest.MatcherAssert.assertThat
 
-class ProjectSpec extends Specification {
+class ProjectTest extends Specification {
 
     Project project
 
@@ -21,10 +21,10 @@ class ProjectSpec extends Specification {
     }
 
     def "should have a name when set" () {
-        when: "makersmarker.Project name is set"
+        when: "makersmarker.entities.Project name is set"
         project.setName("Airport")
 
-        then: "makersmarker.Project name should be Airport"
+        then: "makersmarker.entities.Project name should be Airport"
         project.getName() == "Airport"
 
     }

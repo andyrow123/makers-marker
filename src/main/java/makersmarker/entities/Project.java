@@ -1,4 +1,4 @@
-package makersmarker;
+package makersmarker.entities;
 
 import java.util.List;
 
