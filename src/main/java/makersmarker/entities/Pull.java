@@ -11,11 +11,11 @@ import java.util.Map;
 
 //@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-public class GitHubPull {
+public class Pull {
 
     @JsonIgnore
     @ManyToOne
-    private GitHubProject gitHubProject;
+    private Project project;
 
     @Id
     @GeneratedValue
@@ -30,6 +30,8 @@ public class GitHubPull {
     private String userLogin;
     private int userId;
     private String userAvatarUrl;
+    private String userApiUrl;
+    private String userHtmlUrl;
 
     @SuppressWarnings("unchecked")
     @JsonProperty("user")
@@ -37,14 +39,30 @@ public class GitHubPull {
         this.userLogin = (String)user.get("login");
         this.userId = (int)user.get("id");
         this.userAvatarUrl = (String)user.get("avatar_url");
+        this.userApiUrl = (String)user.get("url");
+        this.userHtmlUrl = (String)user.get("html_url");
     }
 
-    public GitHubPull() {
+    public Pull() {
 
     }
 
-    public void setGitHubProject(GitHubProject gitHubProject) {
-        this.gitHubProject = gitHubProject;
+    public Pull(Project project, String htmlUrl, String diffUrl, int number, String state, String title, String userLogin, int userId, String userAvatarUrl, String userApiUrl, String userHtmlUrl) {
+        this.project = project;
+        this.htmlUrl = htmlUrl;
+        this.diffUrl = diffUrl;
+        this.number = number;
+        this.state = state;
+        this.title = title;
+        this.userLogin = userLogin;
+        this.userId = userId;
+        this.userAvatarUrl = userAvatarUrl;
+        this.userApiUrl = userApiUrl;
+        this.userHtmlUrl = userHtmlUrl;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public long getId() {
@@ -83,9 +101,17 @@ public class GitHubPull {
         return userAvatarUrl;
     }
 
+    public String getUserApiUrl() {
+        return userApiUrl;
+    }
+
+    public String getUserHtmlUrl() {
+        return userHtmlUrl;
+    }
+
     @Override
     public String toString() {
-        return "GitHubPull{" +
+        return "Pull{" +
                 "id=" + id +
                 ", htmlUrl='" + htmlUrl + '\'' +
                 ", diffUrl='" + diffUrl + '\'' +

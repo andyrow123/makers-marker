@@ -9,13 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
-public class GitHubProject {
+public class Project {
 
-    @OneToMany(mappedBy = "gitHubProject")
-    private Set<GitHubPull> gitHubPulls = new HashSet<>();
+    @OneToMany(mappedBy = "project")
+    private Set<Pull> pulls = new HashSet<>();
 
     @JsonIgnore
     @ManyToOne
@@ -29,16 +30,36 @@ public class GitHubProject {
     private String name;
     @JsonProperty("full_name")
     private String fullName;
+    private String ownerLogin;
+    private int ownerId;
+    private String ownerAvatarUrl;
+    private String ownerApiUrl;
+    private String ownerHtmlUrl;
 
-    public GitHubProject() { // jpa only
+    @SuppressWarnings("unchecked")
+    @JsonProperty("owner")
+    private void unpackNested(Map<String,Object> owner) {
+        this.ownerLogin = (String)owner.get("login");
+        this.ownerId = (int)owner.get("id");
+        this.ownerAvatarUrl = (String)owner.get("avatar_url");
+        this.ownerApiUrl = (String)owner.get("url");
+        this.ownerHtmlUrl = (String)owner.get("html_url");
+
     }
 
-//    public GitHubProject(Account account, String name) {
-//        this.name = name;
-//        this.gitHubPulls = gitHubPulls;
-//        this.account = account;
-//    }
+    public Project() { // jpa only
+    }
 
+    public Project(Account account, String name, String fullName, String ownerLogin, int ownerId, String ownerAvatarUrl, String ownerApiUrl, String ownerHtmlUrl) {
+        this.account = account;
+        this.name = name;
+        this.fullName = fullName;
+        this.ownerLogin = ownerLogin;
+        this.ownerId = ownerId;
+        this.ownerAvatarUrl = ownerAvatarUrl;
+        this.ownerApiUrl = ownerApiUrl;
+        this.ownerHtmlUrl = ownerHtmlUrl;
+    }
 
     public Long getId() {
         return id;
@@ -60,11 +81,31 @@ public class GitHubProject {
         return fullName;
     }
 
-    public Set<GitHubPull> getGitHubPulls() {
-        return gitHubPulls;
+    public Set<Pull> getPulls() {
+        return pulls;
     }
 
-    public void addGitHubPull(GitHubPull gitHubPull) {
-        this.gitHubPulls.add(gitHubPull);
+    public void addPull(Pull pull) {
+        this.pulls.add(pull);
+    }
+
+    public String getOwnerLogin() {
+        return ownerLogin;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public String getOwnerAvatarUrl() {
+        return ownerAvatarUrl;
+    }
+
+    public String getOwnerApiUrl() {
+        return ownerApiUrl;
+    }
+
+    public String getOwnerHtmlUrl() {
+        return ownerHtmlUrl;
     }
 }
