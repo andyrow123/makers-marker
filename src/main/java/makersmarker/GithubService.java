@@ -12,8 +12,15 @@ public class GithubService {
 
     public static HashMap requestRepo()  {
         RestTemplate restTemplate = new RestTemplate();
-        HashMap response = restTemplate.getForObject( "https://api.github.com/repos/makersacademy/airport_challenge", HashMap.class);
+        HashMap response = restTemplate.getForObject( "https://api.github.com/repos/makersacademy/news-summary-challenge", HashMap.class);
         log.info(response.toString());
+        return response;
+    }
+
+    public static HashMap[] requestPulls()  {
+        RestTemplate restTemplate = new RestTemplate();
+        HashMap[] response = restTemplate.getForObject( "https://api.github.com/repos/makersacademy/news-summary-challenge/pulls", HashMap[].class);
+        log.info(response[0].get("issue_url").toString());
         return response;
     }
 }
