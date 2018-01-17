@@ -12,8 +12,6 @@ public class MakersMarker {
     private static final Logger log = LoggerFactory.getLogger(MakersMarker.class);
 
     public static void main(String[] args) {
-        RestTemplate restTemplate = new RestTemplate();
-        JSONDomain jsonDomain = restTemplate.getForObject("https://jsonplaceholder.typicode.com/posts/1", JSONDomain.class);
-        log.info(jsonDomain.toString());
+        GithubService githubService = new GithubService();
     }
 }
