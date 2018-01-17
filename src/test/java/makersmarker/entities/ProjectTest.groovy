@@ -1,49 +1,49 @@
 package makersmarker.entities
 
-import makersmarker.entities.Project
+import org.mockito.InjectMocks
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
 import spock.lang.Specification
 
 import static org.hamcrest.Matchers.*
 import static org.hamcrest.MatcherAssert.assertThat
 
-class ProjectTest extends Specification {
-
-    Project project
+class GitHubProjectTest extends Specification {
+        Account account = new Account()
+        GitHubProject gitHubProject
 
     def setup() {
-        project = new Project("Test", [1])
+        gitHubProject = new GitHubProject()
+        gitHubProject.setAccount(account)
     }
 
-    def "should be an instance of Project"() {
+    def "should be an instance of GitHubProject"() {
         expect:
-        project instanceof Project
+        gitHubProject instanceof GitHubProject
 
     }
 
     def "should have a name when set" () {
-        when: "makersmarker.entities.Project name is set"
-        project.setName("Airport")
+        when: "makersmarker.entities.GitHubProject name is set"
+        gitHubProject.setName("Airport")
 
-        then: "makersmarker.entities.Project name should be Airport"
-        project.getName() == "Airport"
+        then: "makersmarker.entities.GitHubProject name should be Airport"
+        gitHubProject.getName() == "Airport"
 
     }
 
     def "should return list of pull requests"() {
-        when:
-        project.setPulls([1, 2, 3] as List<Integer>)
-
-        then:
-        assertThat(project.getPulls(), hasSize(3))
+        expect:
+        assertThat(gitHubProject.getGitHubPulls(), hasSize(0))
     }
 
-    def "#addPull() adds a pull to pulls array"() {
-        when:
-        project.addPull(4)
-
-        then:
-        assertThat(project.getPulls(), hasItem(4))
-    }
+//    def "#addPull() adds a pull to pulls array"() {
+//        when:
+//        gitHubProject.addGitHubPull(4)
+//
+//        then:
+//        assertThat(gitHubProject.getGitHubPulls(), hasItem(4))
+//    }
 
 }
 

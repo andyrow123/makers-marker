@@ -1,17 +1,52 @@
 package makersmarker.entities;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Project {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+public class GitHubProject {
+
+    @OneToMany(mappedBy = "gitHubProject")
+    private Set<GitHubPull> gitHubPulls = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToOne
+    private Account account;
+
+    @Id
+    @GeneratedValue
+    @JsonIgnore
+    private Long id;
 
     private String name;
-    private List<Integer> pulls;
+    @JsonProperty("full_name")
+    private String fullName;
 
-    public Project(String name, List<Integer> pulls) {
-        this.name = name;
-        this.pulls = pulls;
+    public GitHubProject() { // jpa only
     }
 
+//    public GitHubProject(Account account, String name) {
+//        this.name = name;
+//        this.gitHubPulls = gitHubPulls;
+//        this.account = account;
+//    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -21,15 +56,15 @@ public class Project {
         return name;
     }
 
-    public List<Integer> getPulls() {
-        return pulls;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setPulls(List<Integer> pulls) {
-        this.pulls = pulls;
+    public Set<GitHubPull> getGitHubPulls() {
+        return gitHubPulls;
     }
 
-    public void addPull(int pull) {
-        this.pulls.add(pull);
+    public void addGitHubPull(GitHubPull gitHubPull) {
+        this.gitHubPulls.add(gitHubPull);
     }
 }

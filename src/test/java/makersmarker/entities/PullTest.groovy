@@ -2,16 +2,16 @@ package makersmarker.entities
 
 import spock.lang.*
 
-class PullTest extends Specification {
-    private Pull pull
+class GitHubPullTest extends Specification {
+    private GitHubPull pull
 
     def setup() {
-        pull = new Pull()
+        pull = new GitHubPull()
     }
 
     def "should be an instance of Project"() {
         expect:
-        pull instanceof Pull
+        pull instanceof GitHubPull
 
     }
 }
