@@ -19,4 +19,18 @@ class MakersMarkerTest extends Specification {
         println(response)
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK))
     }
+
+    def "hashMapToPulls() returns an array of pulls"() {
+        given: "a HashMap"
+        GithubService githubService = Stub(GithubService)
+        githubService.requestPulls() >>> [{title: "Test Title 1"}, {title: "Test Title 2"}]
+
+        when:
+        HashMap[] hashPulls = githubService.requestPulls()
+        Pull[] pulls = MakersMarker.hashMapToPulls(hashPulls)
+
+        then:
+//        pulls instanceof Pull[]
+        pulls[0].getTitle() == hashPulls[0].get("title")
+    }
 }
